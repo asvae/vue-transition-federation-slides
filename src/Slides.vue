@@ -457,18 +457,62 @@ onMounted(() => {
       <section>
         <section data-markdown>
         <textarea data-template>
-          ### Gimmicks
+          ## Issues with approach
+
+          * Dev Tools
+          * Need to support 2 builds for vue 2 app
 
           ---
 
-          * Dev Tools
-          * Storage handling
-          * Tailwind
-          * Performance
+          ### Dev Tools
+
+          ![](./dev-tools.png)
+
+          > Not shared!
+
+          ---
+
+          ### Need to support 2 builds for vue 2 app
+
+          ![](./two-builds-for-vue2.png)
+
+          ---
+
+          ### Small performance decrease
+
+          * Total amount of JS and CSS is increased
+
+          ---
+        </textarea>
+        </section>
+
+        <section>
+          <h3>CSS Scoping is not perfect</h3>
+          <div class="grid grid-cols-2 gap-4">
+            <img class="fragment" src="/bootstrap-good.png">
+            <img class="fragment" src="/tailwind-no-good.png">
+          </div>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+          > It might get better after we get support for **@scope at-rule**:
+
+          ```
+          @scope (scope root) to (scope limit) {
+            rulesets
+          }
+          ```
+
+          ![](./scope-at-browser-support.png)
 
         </textarea>
         </section>
       </section>
+
+<!--      * Storage handling-->
+<!--      * Tailwind-->
+<!--      * Performance-->
 
       <section>
         <section data-markdown>
@@ -481,7 +525,6 @@ onMounted(() => {
 
           ### Thank you for your attention and time!
 
-          Presentation Qr - TODO
           ![contact](contact-qr.png)
         </textarea>
         </section>

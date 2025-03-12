@@ -72,7 +72,8 @@ onMounted(() => {
           ### Agenda
 
           * What are possible approaches for transition to vue 3? <!-- .element: class="fragment" -->
-          * Demo project of transition with module federation and CSS scoping. <!-- .element: class="fragment" -->
+          * Demo project of transition with module federation and CSS scoping <!-- .element: class="fragment" -->
+          * Edge cases of approach <!-- .element: class="fragment" -->
 
           > **Goal:** by the end of presentation - you'll have a powerful tool for project transitioning.
           <!-- .element: class="fragment" -->
@@ -481,7 +482,7 @@ onMounted(() => {
       <section>
         <section data-markdown>
         <textarea data-template>
-          ## Issues with approach
+          ## Edge cases of approach
 
           * Dev Tools
           * Need to support 2 builds for vue 2 app
@@ -562,10 +563,37 @@ onMounted(() => {
 
           ### Thank you for your attention and time!
 
-          * Contact me:
-
-          ![contact](contact-qr.png)
+          ![](beluga-cat.png)
         </textarea>
+        </section>
+
+        <section>
+          <h2>~Contact me~</h2>
+          <div class="max-w-5xl mx-auto text-white flex items-start gap-12">
+            <!-- Profile Image & Contact Info -->
+            <div class="flex flex-col items-center text-center">
+              <img src="/eugene.jpeg" alt="Eugene" class="w-60 h-60 rounded-full shadow-lg mb-4">
+
+              <div class="space-y-2 text-left text-xs">
+                <p>
+                  ✉️ <span class="font-semibold">Mail:</span>
+                  <a href="mailto:yauheni.prakopchyk@epicmax.co" class="text-blue-400 hover:text-blue-300 underline">
+                    yauheni.prakopchyk@epicmax.co
+                  </a>
+                </p>
+                <p>
+                  🔗 <span class="font-semibold">LinkedIn:</span>
+                  <a href="https://www.linkedin.com/in/yauheni-prakopchyk" class="text-blue-400 hover:text-blue-300 underline">
+                    yauheni-prakopchyk
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="flex-1 text-xs">
+              <img src="/contact-qr.png" alt="Eugene" class="w-60 h-60 shadow-lg mb-4">
+            </div>
+          </div>
         </section>
       </section>
     </div>

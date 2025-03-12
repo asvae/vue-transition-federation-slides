@@ -31,7 +31,7 @@ onMounted(() => {
       </section>
 
       <section>
-        <h2>Who I Am & Why You Should Trust Me?</h2>
+        <h2>Who am I & Why You Should Trust Me?</h2>
         <div class="max-w-5xl mx-auto text-white flex items-start gap-12">
           <!-- Profile Image & Contact Info -->
           <div class="flex flex-col items-center text-center">
@@ -58,7 +58,7 @@ onMounted(() => {
             <ul class="list-none space-y-3">
               <li>🔥 <span class="font-semibold">10+ years</span> in frontend development</li>
               <li>📌 Worked on <span class="font-semibold">30+ front-end projects</span></li>
-              <li>🚀 CTO at <span class="font-semibold">Epicmax</span> (we're kinda obsessed with Vue.js)</li>
+              <li>🚀 CTO at <span class="font-semibold">Epicmax</span> (we're laser focused on Vue)</li>
               <li>🛠 Creator & Lead Developer of <span class="font-semibold">Vuestic UI & Vuestic Admin</span></li>
               <li>🔄 Extensive experience transitioning Vue 2 projects</li>
             </ul>
@@ -193,14 +193,13 @@ onMounted(() => {
             <tr>
               <td class="!pt-8 align-top">
                 <ul>
-                  <li class="fragment">Complex setup and initial configuration </li>
                   <li class="fragment">Experimental approach</li>
+                  <li class="fragment">Potential for conflicts</li>
                 </ul>
               </td>
               <td class="!pt-8 align-top">
                 <ul>
                   <li class="fragment">Allows incremental upgrades</li>
-                  <li class="fragment">Isolates old functionality safely</li>
                   <li class="fragment">Performance is less of an issue</li>
                 </ul>
               </td>
@@ -265,7 +264,7 @@ onMounted(() => {
 
           ![](monorepo-structure.png)
 
-          TODO Why?
+          > Optional step, works the same with just 2 repositories.
 
           ---
 
@@ -273,6 +272,10 @@ onMounted(() => {
 
           * Tailwind CSS
           * Vite
+
+          ---
+
+          ![](vue3-project-structure.png)
 
           ---
 
@@ -307,6 +310,33 @@ onMounted(() => {
               },
             }),
           ],
+          ```
+
+          ---
+
+          ```js
+          // mainFederation.js
+
+          export default {
+            createVue2App: (selector, routes) => {
+              Vue.config.productionTip = false
+              Vue.use(Router);
+
+              const router = new Router({
+                mode: 'abstract',
+                routes,
+              });
+
+              new Vue({
+                router,
+                render: h => h(App),
+              }).$mount(selector)
+
+              return router
+            },
+            routes,
+            reactiveState: reactiveState,
+          }
           ```
 
           ---
@@ -367,26 +397,17 @@ onMounted(() => {
           ### Sync router between vue versions
 
           ```js
-          import { onMounted } from 'vue'
-          import { useRouter } from 'vue-router'
-
-          import main from 'remote_app/mainFederation.js'
-
           let routerVue2
           const routerVue3 = useRouter()
 
-          const syncVue2Route = () => {
-            if (routerVue3.currentRoute.value.path === routerVue2.currentRoute.path) {
-              return
-            }
-            routerVue2?.push(routerVue3.currentRoute.value.path);
-          }
+          const areRoutesInSync = () =>
+            outerVue3.currentRoute.value.path === routerVue2.currentRoute.path
 
+          const syncVue2Route = () => {
+            areRoutesInSync() || routerVue2?.push(routerVue3.currentRoute.value.path)
+          }
           const syncVue3Route = () => {
-            if (routerVue3.currentRoute.value.path === routerVue2.currentRoute.path) {
-              return
-            }
-            routerVue3.push(routerVue2.currentRoute.path);
+            areRoutesInSync() || routerVue3.push(routerVue2.currentRoute.path)
           }
 
           onMounted(() => {
@@ -446,9 +467,12 @@ onMounted(() => {
 
           ### Migrate pages one by one
 
-          [Example app](http://localhost:5000/page1)
+          ![](happy-transitioned.png) <!-- .element: class="w-100 fragment" -->
 
           ---
+
+          [Example app](http://localhost:5000/page1)
+
 
         </textarea>
         </section>
@@ -461,6 +485,8 @@ onMounted(() => {
 
           * Dev Tools
           * Need to support 2 builds for vue 2 app
+          * Small performance decrease
+          * Data handling
 
           ---
 
@@ -474,7 +500,7 @@ onMounted(() => {
 
           ### Need to support 2 builds for vue 2 app
 
-          ![](./two-builds-for-vue2.png)
+          ![](./two-builds-for-vue2.png) <!-- .element: class="w-160" -->
 
           ---
 
@@ -482,7 +508,19 @@ onMounted(() => {
 
           * Total amount of JS and CSS is increased
 
+          ![](./double-js-and-css.png) <!-- .element: class="w-100" -->
+
           ---
+
+          ### Reuse between host and remote
+
+          * Utility functions <!-- .element: class="fragment text-green-500" -->
+          * API handling <!-- .element: class="fragment text-green-500" -->
+          * Reactive objects <!-- .element: class="fragment text-yellow-500" -->
+          * Store <!-- .element: class="fragment text-red-500" -->
+
+          ![](heresy.png)  <!-- .element: class="fragment text-green-500" -->
+
         </textarea>
         </section>
 
@@ -512,18 +550,19 @@ onMounted(() => {
 
 <!--      * Storage handling-->
 <!--      * Tailwind-->
-<!--      * Performance-->
 
       <section>
         <section data-markdown>
         <textarea data-template>
           ### Takeaways
 
-          Module federation + CSS scoping offers a stable and effective solution for vue 3 transition.
+          Module federation + CSS scoping offers an effective solution for vue 3 transition.
 
           ---
 
           ### Thank you for your attention and time!
+
+          * Contact me:
 
           ![contact](contact-qr.png)
         </textarea>
@@ -536,6 +575,7 @@ onMounted(() => {
 <style>
 @import url('../node_modules/reveal.js/dist/reveal.css');
 @import url('../node_modules/reveal.js/dist/theme/black.css');
+@import url('../node_modules/reveal.js/plugin/highlight/monokai.css');
 
 #app {
   width: 100%;
